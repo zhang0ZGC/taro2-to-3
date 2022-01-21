@@ -18,9 +18,10 @@ const configExpSelector = pageComponentName => ({
       name: 'config'
     }
   },
-  right: {
-    type: 'ObjectExpression'
-  }
+  // 可能有ts类型 不一定是纯粹的对象
+  // right: {
+  //   type: 'ObjectExpression'
+  // }
 });
 
 const ENV_ALTERNATION = Object.values(TARO_ENVS).join('|');
@@ -165,6 +166,8 @@ module.exports = function (file, api, options) {
         } else {
           j(typeSpecifier).remove();
         }
+      }else {
+        body = [j.exportDefaultDeclaration(configObjExp)];
       }
     } else {
       body = [j.exportDefaultDeclaration(configObjExp)];

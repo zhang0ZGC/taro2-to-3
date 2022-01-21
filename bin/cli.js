@@ -260,9 +260,11 @@ async function checkDependencies(targetDir, dependenciesMarkers) {
   }
 
   if (bin) {
+    const installCommand = {'npm': 'install', 'yarn': 'add'}[bin];
+    const uninstallCommand = {'npm': 'uninstall', 'yarn': 'remove'}[bin];
     const commonInstallDeps = installDeps.filter(d => !d.dev).map(d => d.name);
-    console.log(chalk.gray(`\n> ${bin} install ${pkgs.concat(commonInstallDeps).join(' ')}\n`));
-    await execa(bin, ['install', ...pkgs.concat(commonInstallDeps)], {
+    console.log(chalk.gray(`\n> ${bin} ${installCommand} ${pkgs.concat(commonInstallDeps).join(' ')}\n`));
+    await execa(bin, [installCommand, ...pkgs.concat(commonInstallDeps), '--registry','https://registry.npmmirror.com/'], {
       stdio: 'inherit',
       stripEof: false
     });
@@ -271,14 +273,14 @@ async function checkDependencies(targetDir, dependenciesMarkers) {
       .filter(d => d.dev)
       .map(d => d.name)
       .concat(Object.keys(dependenciesMarkers));
-    console.log(chalk.gray(`\n> ${bin} install -D ${devInstallDeps.join(' ')}\n`));
-    await execa(bin, ['install', '-D', ...devInstallDeps], {
+    console.log(chalk.gray(`\n> ${bin} ${installCommand} -D ${devInstallDeps.join(' ')}\n`));
+    await execa(bin, [installCommand, '-D', ...devInstallDeps, '--registry','https://registry.npmmirror.com/'], {
       stdio: 'inherit',
       stripEof: false
     });
 
-    console.log(chalk.gray(`\n> ${bin} uninstall ${deprecatedDeps.join(' ')}\n`));
-    await execa(bin, ['uninstall', ...deprecatedDeps], {
+    console.log(chalk.gray(`\n> ${bin} ${uninstallCommand} ${deprecatedDeps.join(' ')}\n`));
+    await execa(bin, [uninstallCommand, ...deprecatedDeps], {
       stdio: 'inherit',
       stripEof: false
     });

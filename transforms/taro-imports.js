@@ -7,6 +7,7 @@ const REACT_APIS = [
   'PureComponent',
   'createRef',
   'createContext',
+  'memo',
 
   // Hooks
   'useEffect',

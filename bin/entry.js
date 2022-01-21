@@ -1,8 +1,8 @@
 const fs = require('fs-extra');
 const jscodeshift = require('jscodeshift');
 
-const j = jscodeshift.withParser('babylon');
-
+// const j = jscodeshift.withParser('babylon');
+const j = jscodeshift.withParser('tsx');
 class Entry {
   constructor(entryFilePath) {
     this.root = null;

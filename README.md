@@ -1,3 +1,17 @@
+# 修改了一些问题
+1. yarn 安装命令问题
+2. 入口文件改为tsx，支持app.tsx文件
+3. 页面配置文件某些情况下不生成问题
+4. useMemoLocalName名称获取报错问题
+5. 增加ReactApi：memo
+   
+# 升级经验
+1. 环境变量问题 config/index.js 中 defineConstants: {"process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),}
+2. app.tsx 文件中 componentWillMount 改为 onLaunch， 全局参数获取方式有变化
+3. 其他注意插件引入、参数获取等是否正常
+4. （可忽略）函数前置装饰器问题：属于公司项目问题，
+
+
 # taro2-to-3
 
 帮助你将 taro 2.x 项目升级到 taro 3.x 项目，基于 jscodeshift 构建。
@@ -10,11 +24,19 @@
 
 ## 使用
 
-在运行前，请先提交你的本地代码修改。
+未上传npm，本地使用
 
 ```bash
-# 全局安装
-npm i -g taro2-to-3
+# 下载项目
+git clone https://github.com/jianzhouf/taro2-to-3.git
+# 进入项目并安装
+cd taro2-to-3
+npm install
+# link
+sudo npm link
+
+# 进入自己的项目
+cd your_project_path
 # or for yarn user
 #  yarn global add taro2-to-3
 taro2-to-3
