@@ -37,8 +37,6 @@ sudo npm link
 
 # 进入自己的项目
 cd your_project_path
-# or for yarn user
-#  yarn global add taro2-to-3
 taro2-to-3
 ```
 
