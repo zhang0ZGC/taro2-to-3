@@ -48,7 +48,7 @@ class Entry {
     const subPkgsPath = this.configPath.value.value.properties.find(x =>
       x.type === 'ObjectProperty' &&
       x.key.type === 'Identifier' &&
-      x.key.name === 'subPackages' &&
+      (x.key.name === 'subPackages' || x.key.name === 'subpackages') &&
       x.value.type === 'ArrayExpression'
     );
     if (subPkgsPath) {
