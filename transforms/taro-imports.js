@@ -20,6 +20,8 @@ const REACT_APIS = [
   'useMemo',
   'useContext',
 
+  'memo',
+
   // types
   'FunctionComponent',
   'FC',
