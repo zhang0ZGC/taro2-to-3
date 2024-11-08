@@ -8,6 +8,7 @@ const REACT_APIS = [
   'createRef',
   'createContext',
   'memo',
+  'Fragment',
 
   // Hooks
   'useEffect',
